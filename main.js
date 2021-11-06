@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 const button = document.getElementById('button');
 const audioElement = document.getElementById('audio');
 
@@ -107,17 +108,41 @@ const VoiceRSS = {
     },
 };
 
-const test = () => {
-    VoiceRSS.speech({
-        key: apiKey,
-        src: 'Hello, world!',
-        hl: 'en-us',
-        v: 'Linda',
-        r: 0,
-        c: 'mp3',
-        f: '44khz_16bit_stereo',
-        ssml: false,
-    });
+// const test = () => {
+//     VoiceRSS.speech({
+//         key: apiKey,
+//         src: 'Hello, world!',
+//         hl: 'en-us',
+//         v: 'Linda',
+//         r: 0,
+//         c: 'mp3',
+//         f: '44khz_16bit_stereo',
+//         ssml: false,
+//     });
+// };
+
+// test();
+
+// Get jokes from joke API
+
+const getJokes = async () => {
+    let joke = '';
+    const apiUrl =
+        'https://v2.jokeapi.dev/joke/Programming?blacklistFlags=racist,sexist,explicit';
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        if (data.setup) {
+            joke = `${data.setup} ... ${data.delivery}`;
+        } else {
+            joke = data.joke;
+        }
+        console.log(joke);
+    } catch (error) {
+        alert(
+            `Something gone wrong, please try later or contact the website owner and report this error : ${error}`,
+        );
+    }
 };
 
-test();
+getJokes();
