@@ -40,7 +40,7 @@ const getJokes = async () => {
         toggleButton();
     } catch (error) {
         alert(
-            `Something gone wrong, please try later or contact the website owner and report this error : ${error}`,
+            `Something went wrong, please try later or contact the website owner and report this error : ${error}`,
         );
     }
 };
